@@ -20,14 +20,14 @@ const ExportButton = ({ study, setText, auth }) => {
 
   const importPgnToStudy = async () => {
     if (pgn === "") {
-      setText(["Cannot export empty PGN"])
+      setText(["No PGN was detected, please try again."])
       return;
     }
     const url = `/api/study/${study.id}/import-pgn`;
     const name = createName();
     const config = {body: new URLSearchParams({ pgn: pgn, name: name }), method: "POST"};
     await auth.fetchBody(url, config);
-    setText(["Exported game to", `"${study.name}/${name}"`]);
+    setText(["PGN was exported to", `"${study.name}/${name}"`]);
   }
 
   const handleClick = (e) => {
